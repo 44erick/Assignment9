@@ -3,9 +3,11 @@
 *@
 @{
     ViewBag.Title = "List of Movies";
+    @model IEnumerable<modelResponse>
+    ViewBag.modelReponse = Model;
 }
 
-@model IEnumerable<MovieList.Models.modelResponse>
+
 <div class="row">
     <div class="column"></div>
     <div class="column">
@@ -45,7 +47,7 @@
 
             <tbody>
                 <!-- Using c# to loop through movies.-->
-                @foreach (MovieList.Models.modelResponse x in Model)
+                @foreach (var x in Model)
                 {
                     <tr>
                         <td>@x.Category</td>
@@ -56,6 +58,18 @@
                         <td>@x.Edited</td>
                         <td>@x.Lent</td>
                         <td>@x.Notes</td>
+                        <td>
+                            <form asp-action="EditMoviefirst" method="post">
+                                <input type="hidden" name="movieID" value="@x.MovieID"/>
+                                <button type="submit" class="btn" >Edit Movie</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="DeleteMovie" method="post">
+                                <input type="hidden" name="movieID" value="@x.MovieID" />
+                                <button type="submit" class="btn">Delete Movie</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>

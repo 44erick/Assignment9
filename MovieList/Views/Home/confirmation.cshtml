@@ -3,13 +3,14 @@
 *@
 @{
     ViewBag.Title = "Movie Succesfully Inputted";
+    @model MovieList.Models.modelResponse
 }
 
 <div class="row">
     <div class="column"></div>
     <!-- Redirect to movie list-->
     <div class="column">
-        Click <a asp-action="movieList">here</a> to see the movie list.
+        Click <a asp-controller="Home" asp-action="movieList">here</a> to see the movie list.
     </div>
     <div class="column"></div>
 </div> 

@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Edit Movie";
+    @model MovieList.Models.modelResponse
+}
+
+<!-- Lines 7 to 13 make the materialize select dropdown work, it's kind of dumb but you get what you pay for.-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+    </script>
+
+<div class="row">
+    <div class="column"></div>
+    <div class="column">
+        <div>
+            <h2>Edit @ViewBag.modelResponse.Title: </h2>
+        </div>
+        <!-- Form-->
+        <form asp-action="EditMovietwo" method="post">
+            <div>
+                <label asp-for="Category">Category:</label>
+                <input asp-for="Category" />
+            </div>
+
+            <div>
+                <label asp-for="Title">Title:</label>
+                <input asp-for="Title" />
+            </div>
+
+            <div>
+                <label asp-for="Year">Year:</label>
+                <input asp-for="Year" />
+            </div>
+
+            <div>
+                <label asp-for="Director">Director:</label>
+                <input asp-for="Director" />
+            </div>
+
+            <div class="input-field col s12">
+                <!-- Give choices instead of input-->
+                <label asp-for="Rating">Rating:</label>
+                <br />
+                <select asp-for="Rating">
+                    <option value="">Select One</option>
+                    <option value="G">G</option>
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="R">R</option>
+                </select>
+            </div>
+
+            <div class="input-field col s12">
+                <!-- Give choices instead of input-->
+                <label asp-for="Edited">Edited:</label>
+                <br />
+                <select asp-for="Edited">
+                    <option value="">Select One</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="Lent">Lent To:</label>
+                <input asp-for="Lent" />
+            </div>
+
+            <div>
+                <label asp-for="Notes">Notes:</label>
+                <input asp-for="Notes" />
+            </div>
+
+            <input type="hidden" asp-for="MovieID" value="@ViewBag.modelResponse.MovieID" />
+
+            <button type="submit" class="btn">Update @ViewBag.modelResponse.Title</button>
+            <!-- This bottom part will show our validator messages.-->
+            <div asp-validation-summary="All"></div>
+        </form>
+
+
+
+    </div>
+    <div class="column"></div>
+</div>  
